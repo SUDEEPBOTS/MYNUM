@@ -1,7 +1,9 @@
 from fastapi import FastAPI, Query
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import HTMLResponse
 import phonenumbers
 from phonenumbers import geocoder, carrier, timezone
+import os
 
 app = FastAPI()
 
@@ -12,6 +14,13 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# 🔥 YEH HAI FIX: Root URL par HTML dikhana
+@app.get("/", response_class=HTMLResponse)
+async def read_root():
+    # Saath wali index.html file ko padh kar return karega
+    with open(os.path.join(os.path.dirname(__file__), "index.html"), "r") as f:
+        return f.read()
 
 @app.get("/api/lookup")
 def lookup_number(number: str = Query(..., description="Phone number")):
@@ -40,4 +49,4 @@ def lookup_number(number: str = Query(..., description="Phone number")):
 
     except Exception as e:
         return {"status": "error", "message": "Could not parse number"}
-      
+        
