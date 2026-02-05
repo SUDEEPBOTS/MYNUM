@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phone Intelligence Tool</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="main-wrapper">
+        <div class="card">
+            <div class="header">
+                <i class="ph ph-shield-check icon-lg"></i>
+                <h2>Number Intelligence</h2>
+                <p>Enter a phone number to retrieve carrier and location data.</p>
+            </div>
+
+            <div class="input-section">
+                <div class="input-wrapper">
+                    <i class="ph ph-phone"></i>
+                    <input type="text" id="phoneInput" placeholder="+91 9876543210">
+                    <button onclick="pasteNum()" class="action-btn" title="Paste">
+                        <i class="ph ph-clipboard-text"></i>
+                    </button>
+                </div>
+                <button class="search-btn" onclick="checkNumber()" id="searchBtn">
+                    <span>Search Database</span>
+                    <i class="ph ph-magnifying-glass"></i>
+                </button>
+            </div>
+
+            <div id="loader" class="loader-container hidden">
+                <div class="spinner"></div>
+                <p>Analyzing Network...</p>
+            </div>
+
+            <div id="resultBox" class="result-section hidden">
+                <div class="result-header">
+                    <h3>Analysis Report</h3>
+                    <button onclick="copyResult()" class="copy-btn">
+                        <i class="ph ph-copy"></i> Copy
+                    </button>
+                </div>
+                <div id="outputGrid" class="grid-layout">
+                    </div>
+            </div>
+            
+            <div id="errorBox" class="error-msg hidden"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
